@@ -2,17 +2,17 @@ version: '3.9'
 
 services:
   db:
-    image: postgres:15
+    image: postgres:15            # Imagen oficial de PostgreSQL
     container_name: template-local-db
-    restart: unless-stopped
+    restart: unless-stopped       # Reinicia automáticamente si falla
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: 123456
-      POSTGRES_DB: tfg_db
+      POSTGRES_USER: admin        # Usuario de la base de datos
+      POSTGRES_PASSWORD: 123456   # Contraseña
+      POSTGRES_DB: tfg_db         # Nombre de la base de datos
     ports:
-      - "5432:5432"
+      - "5432:5432"               # Exponer el puerto para acceder desde fuera del contenedor
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data   # Persistencia de datos
 
 volumes:
-  db_data:
+  db_data:                        # Volumen para mantener los datos aunque el contenedor se reinicie
