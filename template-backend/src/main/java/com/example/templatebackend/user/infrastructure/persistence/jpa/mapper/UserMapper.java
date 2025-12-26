@@ -15,7 +15,8 @@ public interface UserMapper {
 
   UserRecord toModelRecord(UserEntity userEntity);
 
-  @Mapping(target = "habits", ignore = true)
+  @Mapping(target = "version", ignore = true)
+  @Mapping(target = "id", ignore = true)
   UserEntity toEntity(User user);
 
   List<User> toModelList(List<UserEntity> entities);

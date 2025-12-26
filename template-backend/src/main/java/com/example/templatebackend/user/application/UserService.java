@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +18,7 @@ public class UserService implements UserUseCase {
   private final UserRepository userRepository;
 
   @Override
-  public User findById(UUID id) {
+  public User findById(Integer id) {
     return userRepository.findById(id)
         .orElseThrow(() -> new ResponseStatusException(
             HttpStatus.NOT_FOUND,
@@ -28,7 +27,7 @@ public class UserService implements UserUseCase {
   }
 
   @Override
-  public UserRecord findByIdRecord(UUID id) {
+  public UserRecord findByIdRecord(Integer id) {
     return userRepository.findByIdRecord(id)
         .orElseThrow(() -> new ResponseStatusException(
             HttpStatus.NOT_FOUND,
@@ -56,13 +55,13 @@ public class UserService implements UserUseCase {
   }
 
   @Override
-  public User update(UUID id, User user) {
+  public User update(Integer id, User user) {
     user.setId(id);
     return userRepository.update(id, user);
   }
 
   @Override
-  public void delete(UUID id) {
+  public void delete(Integer id) {
     userRepository.deleteById(id);
   }
 }

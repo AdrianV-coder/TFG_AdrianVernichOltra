@@ -12,7 +12,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -21,12 +20,12 @@ public class HabitRepositoryImpl implements HabitRepository {
   private final HabitMapper habitMapper;
 
   @Override
-  public Optional<Habit> findById(UUID id) {
+  public Optional<Habit> findById(Integer id) {
     return habitJpaRepository.findById(id).map(habitMapper::toModel);
   }
 
   @Override
-  public Optional<HabitRecord> findByIdRecord(UUID id) {
+  public Optional<HabitRecord> findByIdRecord(Integer id) {
     return habitJpaRepository.findById(id).map(habitMapper::toModelRecord);
   }
 
@@ -36,8 +35,8 @@ public class HabitRepositoryImpl implements HabitRepository {
   }
 
   @Override
-  public List<Habit> findByUserId(UUID userId) {
-    return habitMapper.toModelList(habitJpaRepository.findByUserId(userId));
+  public List<Habit> findByUserId(Integer userId) {
+    return habitMapper.toModelList(habitJpaRepository.findByUser_Id(userId));
   }
 
   @Override
@@ -46,7 +45,7 @@ public class HabitRepositoryImpl implements HabitRepository {
   }
 
   @Override
-  public Habit update(UUID id, Habit habit) {
+  public Habit update(Integer id, Habit habit) {
     if (habitJpaRepository.findById(id).isEmpty()) {
       throw new ResponseStatusException(
           HttpStatus.NOT_FOUND,
@@ -58,7 +57,7 @@ public class HabitRepositoryImpl implements HabitRepository {
   }
 
   @Override
-  public void deleteById(UUID id) {
+  public void deleteById(Integer id) {
     if (!habitJpaRepository.existsById(id)) {
       throw new ResponseStatusException(
           HttpStatus.NOT_FOUND,

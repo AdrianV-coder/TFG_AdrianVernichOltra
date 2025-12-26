@@ -7,13 +7,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Getter
 @Setter
 public class Habit {
-  private UUID id;
-  private UUID userId;
+  private Integer id;
+  private Integer userId;
 
   @NotBlank(message = "Name cannot be blank")
   private String name;
@@ -24,4 +23,6 @@ public class Habit {
 
   @NotNull
   private LocalDate createdAt = LocalDate.now();
+
+  private Long version;
 }

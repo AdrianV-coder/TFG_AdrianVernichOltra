@@ -4,20 +4,19 @@ import com.example.templatebackend.habit.domain.model.Habit;
 import com.example.templatebackend.habit.domain.model.HabitRecord;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface HabitUseCase {
-  Habit findById(UUID id);
+  Habit findById(Integer id);
 
-  HabitRecord findByIdRecord(UUID id);
+  HabitRecord findByIdRecord(Integer id);
 
   List<Habit> findAll();
 
-  List<Habit> findByUserId(UUID userId);
+  List<Habit> findByUserId(Integer userId);
 
   Habit create(Habit habit);
 
-  Habit update(UUID id, Habit habit);
+  Habit update(Integer id, Habit habit);
 
-  void delete(UUID id);
+  void delete(Integer id);
 }

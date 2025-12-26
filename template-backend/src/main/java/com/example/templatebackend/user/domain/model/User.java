@@ -8,14 +8,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.UUID;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-  private UUID id;
+  private Integer id;
 
   @NotBlank(message = "Username cannot be empty")
   @Size(
@@ -30,4 +28,6 @@ public class User {
 
   @NotBlank(message = "Password cannot be empty")
   private String password;
+
+  private Long version;
 }

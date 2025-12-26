@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,8 +15,12 @@ import java.util.UUID;
 public class HabitEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id")
-  private UUID id;
+  @Column(name = "id", updatable = false, nullable = false)
+  private Integer id;
+
+  @Version
+  @Column(name = "version")
+  private Long version;
 
   @Column(name = "name", nullable = false)
   private String name;

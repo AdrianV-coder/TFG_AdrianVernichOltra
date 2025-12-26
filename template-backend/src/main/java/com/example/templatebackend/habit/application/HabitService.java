@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -16,13 +15,13 @@ public class HabitService implements HabitUseCase {
   private final HabitRepository habitRepository;
 
   @Override
-  public Habit findById(UUID id) {
+  public Habit findById(Integer id) {
     return habitRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("Habit not found by id: " + id));
   }
 
   @Override
-  public HabitRecord findByIdRecord(UUID id) {
+  public HabitRecord findByIdRecord(Integer id) {
     return habitRepository.findByIdRecord(id)
         .orElseThrow(() -> new RuntimeException("HabitRecord not found by id: " + id));
   }
@@ -33,7 +32,7 @@ public class HabitService implements HabitUseCase {
   }
 
   @Override
-  public List<Habit> findByUserId(UUID userId) {
+  public List<Habit> findByUserId(Integer userId) {
     return habitRepository.findByUserId(userId);
   }
 
@@ -43,12 +42,12 @@ public class HabitService implements HabitUseCase {
   }
 
   @Override
-  public Habit update(UUID id, Habit habit) {
+  public Habit update(Integer id, Habit habit) {
     return habitRepository.update(id, habit);
   }
 
   @Override
-  public void delete(UUID id) {
+  public void delete(Integer id) {
     habitRepository.deleteById(id);
   }
 }

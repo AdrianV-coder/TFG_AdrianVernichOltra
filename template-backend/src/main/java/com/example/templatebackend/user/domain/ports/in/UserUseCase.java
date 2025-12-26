@@ -4,12 +4,11 @@ import com.example.templatebackend.user.domain.model.User;
 import com.example.templatebackend.user.domain.model.UserRecord;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface UserUseCase {
-  User findById(UUID id);
+  User findById(Integer id);
 
-  UserRecord findByIdRecord(UUID id);
+  UserRecord findByIdRecord(Integer id);
 
   List<User> findAll();
 
@@ -17,8 +16,8 @@ public interface UserUseCase {
 
   User create(User post);
 
-  User update(UUID id,
+  User update(Integer id,
               User post);
 
-  void delete(UUID id);
+  void delete(Integer id);
 }

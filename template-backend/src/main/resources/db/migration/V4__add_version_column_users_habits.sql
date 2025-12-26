@@ -1,0 +1,3 @@
+-- V4__add_version_column_users_habits.sql
+ALTER TABLE users ADD COLUMN IF NOT EXISTS version BIGINT DEFAULT 0 NOT NULL;
+ALTER TABLE habits ADD COLUMN IF NOT EXISTS version BIGINT DEFAULT 0 NOT NULL;

@@ -7,7 +7,6 @@ import com.example.templatebackend.user.domain.ports.in.UserUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 
 import lombok.RequiredArgsConstructor;
@@ -26,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -63,7 +61,7 @@ public class UserController {
       summary = "Get users with an id"
   )
   @GetMapping("/id/{id}")
-  public ResponseEntity<User> findById(@PathVariable UUID id) {
+  public ResponseEntity<User> findById(@PathVariable Integer id) {
 
     return ResponseEntity.ok(userUseCase.findById(id));
   }
@@ -73,7 +71,7 @@ public class UserController {
       summary = "Get userRecords with an id"
   )
   @GetMapping("/{id}/record")
-  public ResponseEntity<UserRecord> findByIdRecord(@PathVariable UUID id) {
+  public ResponseEntity<UserRecord> findByIdRecord(@PathVariable Integer id) {
 
     return ResponseEntity.ok(userUseCase.findByIdRecord(id));
   }
@@ -94,7 +92,7 @@ public class UserController {
       summary = "Edit user"
   )
   @PutMapping("/{id}")
-  public ResponseEntity<User> update(@PathVariable UUID id,
+  public ResponseEntity<User> update(@PathVariable Integer id,
                                      @Valid @RequestBody User user) {
 
     return ResponseEntity.ok(userUseCase.update(id, user));
@@ -105,7 +103,7 @@ public class UserController {
       summary = "Delete a user with the id"
   )
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> delete(@PathVariable UUID id) {
+  public ResponseEntity<Void> delete(@PathVariable Integer id) {
     userUseCase.delete(id);
     return ResponseEntity.noContent().build();
   }

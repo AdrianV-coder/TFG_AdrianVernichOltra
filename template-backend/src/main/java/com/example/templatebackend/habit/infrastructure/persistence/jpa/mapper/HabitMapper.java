@@ -10,13 +10,15 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface HabitMapper {
+
   @Mapping(target = "userId", source = "user.id")
   Habit toModel(HabitEntity entity);
 
   @Mapping(target = "userId", source = "user.id")
   HabitRecord toModelRecord(HabitEntity entity);
 
-  @Mapping(target = "user.id", source = "userId")
+  @Mapping(target = "version", ignore = true)
+  @Mapping(target = "id", ignore = true)
   HabitEntity toEntity(Habit habit);
 
   List<Habit> toModelList(List<HabitEntity> entities);

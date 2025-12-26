@@ -22,13 +22,13 @@ public class UserRepositoryImpl implements UserRepository {
   private final UserMapper userMapper;
 
   @Override
-  public Optional<User> findById(UUID id) {
+  public Optional<User> findById(Integer id) {
     return userJpaRepository.findById(id)
         .map(userMapper::toModel);
   }
 
   @Override
-  public Optional<UserRecord> findByIdRecord(UUID id) {
+  public Optional<UserRecord> findByIdRecord(Integer id) {
     return userJpaRepository.findById(id)
         .map(userMapper::toModelRecord);
   }
@@ -46,13 +46,11 @@ public class UserRepositoryImpl implements UserRepository {
 
   @Override
   public User save(User user) {
-    return userMapper.toModel(
-        userJpaRepository.save(userMapper.toEntity(user))
-    );
+    return userMapper.toModel(userJpaRepository.save(userMapper.toEntity(user)));
   }
 
   @Override
-  public User update(UUID id, User user) {
+  public User update(Integer id, User user) {
     if (userJpaRepository.findById(id).isEmpty()) {
       throw new ResponseStatusException(
           HttpStatus.NOT_FOUND,
@@ -69,7 +67,7 @@ public class UserRepositoryImpl implements UserRepository {
 
 
   @Override
-  public void deleteById(UUID id) {
+  public void deleteById(Integer id) {
     if (!userJpaRepository.existsById(id)) {
       throw new ResponseStatusException(
           HttpStatus.NOT_FOUND,
