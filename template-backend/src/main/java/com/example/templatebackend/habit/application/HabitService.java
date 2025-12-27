@@ -5,7 +5,9 @@ import com.example.templatebackend.habit.domain.model.HabitRecord;
 import com.example.templatebackend.habit.domain.ports.in.HabitUseCase;
 import com.example.templatebackend.habit.domain.ports.out.HabitRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -17,14 +19,15 @@ public class HabitService implements HabitUseCase {
   @Override
   public Habit findById(Integer id) {
     return habitRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException("Habit not found by id: " + id));
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Habit not found: " + id));
   }
 
   @Override
   public HabitRecord findByIdRecord(Integer id) {
     return habitRepository.findByIdRecord(id)
-        .orElseThrow(() -> new RuntimeException("HabitRecord not found by id: " + id));
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "HabitRecord not found: " + id));
   }
+
 
   @Override
   public List<Habit> findAll() {

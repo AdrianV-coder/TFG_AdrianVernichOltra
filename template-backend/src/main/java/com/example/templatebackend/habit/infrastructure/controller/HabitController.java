@@ -3,9 +3,7 @@ package com.example.templatebackend.habit.infrastructure.controller;
 import com.example.templatebackend.habit.domain.model.Habit;
 import com.example.templatebackend.habit.domain.model.HabitRecord;
 import com.example.templatebackend.habit.domain.ports.in.HabitUseCase;
-import com.example.templatebackend.user.domain.model.User;
 import com.example.templatebackend.user.domain.ports.out.UserRepository;
-import com.example.templatebackend.user.infrastructure.persistence.jpa.entity.UserEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -24,7 +22,6 @@ import java.util.List;
     description = "Habit operations")
 public class HabitController {
   private final HabitUseCase habitUseCase;
-  private final UserRepository  userRepository;
 
   @GetMapping
   @Operation(
@@ -58,11 +55,12 @@ public class HabitController {
     return ResponseEntity.ok(habitUseCase.findByIdRecord(id));
   }
 
+  @Operation(
+      description = "Create new habit",
+      summary = "Create new habit")
   @PostMapping
   public ResponseEntity<Habit> create(@Valid @RequestBody Habit habit, @RequestParam Integer userId) {
-    User user = userRepository.findById(userId)
-        .orElseThrow();
-    habit.setUserId(user.getId());
+    habit.setUserId(userId);
     return ResponseEntity.status(HttpStatus.CREATED)
         .body(habitUseCase.create(habit));
   }

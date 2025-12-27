@@ -19,8 +19,8 @@ public class HabitEntity {
   private Integer id;
 
   @Version
-  @Column(name = "version")
-  private Long version;
+  @Column(name = "version", nullable = false)
+  private Long version = 0L;
 
   @Column(name = "name", nullable = false)
   private String name;
