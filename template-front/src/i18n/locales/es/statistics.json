@@ -1,0 +1,14 @@
+{
+  "title": "Estadísticas",
+  "panelTitle": "Progreso semanal",
+  "panelSubtitle": "Hábitos completados en los últimos 7 días",
+  "loadingStats": "Cargando estadísticas...",
+  "errorLoadingStats": "Error cargando estadísticas",
+  "noHabits": "Todavía no tienes hábitos.",
+  "chartTitle": "Cumplimiento de hábitos",
+  "chartSubtitle": "Del {{start}} al {{end}}",
+  "yTitle": "Días completados",
+  "seriesName": "Completado",
+  "tooltipSuffix": "días",
+  "chartDescription": "Gráfico con los días completados por hábito en el rango seleccionado."
+}

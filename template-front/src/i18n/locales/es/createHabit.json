@@ -1,0 +1,12 @@
+{
+  "title": "Crear hábito",
+  "subtitle": "Define un hábito y empieza a registrarlo día a día.",
+  "save": "Guardar hábito",
+  "errorCreate": "No se pudo crear el hábito.",
+  "fields": {
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Ej: Beber 2L de agua",
+    "descriptionLabel": "Descripción",
+    "descriptionPlaceholder": "Ej: Tomar agua durante el día para mejorar energía y salud"
+  }
+}

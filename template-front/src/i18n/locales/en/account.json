@@ -1,0 +1,7 @@
+{
+  "title": "Account of {{username}}",
+  "notLoggedIn": "You are not logged in",
+  "username": "Username",
+  "email": "Email",
+  "goStats": "View statistics"
+}
