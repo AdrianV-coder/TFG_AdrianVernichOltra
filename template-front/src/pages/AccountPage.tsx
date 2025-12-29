@@ -48,7 +48,7 @@ function AccountPage() {
               </Link>
             </div>
 
-            {/* PREMIUM (si luego lo implementas en backend)
+            {/* PREMIUM (si luego lo implemento en el backend)
             <div className="mt-6 border-t border-gray-200 dark:border-gray-700 pt-4">
               <button
                 className="w-full bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded transition"
