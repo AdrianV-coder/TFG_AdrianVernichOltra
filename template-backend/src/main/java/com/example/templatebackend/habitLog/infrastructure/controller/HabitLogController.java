@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -30,7 +32,8 @@ public class HabitLogController {
   )
   @PostMapping
   public HabitLog markHabit(@RequestParam Integer habitId, @RequestParam LocalDate date, @RequestParam boolean completed) {
-    return habitLogUseCase.markHabit(habitId, date, completed);
+    HabitLog result = habitLogUseCase.markHabit(habitId, date, completed);
+    return ResponseEntity.status(HttpStatus.OK).body(result).getBody();
   }
 
   @Operation(
