@@ -1,0 +1,85 @@
+package com.example.templatebackend.habit.infrastructure.controller;
+
+import com.example.templatebackend.habit.domain.model.Habit;
+import com.example.templatebackend.habit.domain.model.HabitRecord;
+import com.example.templatebackend.habit.domain.ports.in.HabitUseCase;
+import com.example.templatebackend.user.domain.ports.out.UserRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/habits")
+@RequiredArgsConstructor
+@Tag(
+    name = "Habit",
+    description = "Habit operations")
+public class HabitController {
+  private final HabitUseCase habitUseCase;
+
+  @GetMapping
+  @Operation(
+      description = "Get all habits",
+      summary = "Get all habits")
+  public ResponseEntity<List<Habit>> findAll() {
+    return ResponseEntity.ok(habitUseCase.findAll());
+  }
+
+  @GetMapping("/user/{userId}")
+  @Operation(
+      description = "Get habits by userId",
+      summary = "Get habits by userId")
+  public ResponseEntity<List<Habit>> findByUserId(@PathVariable Integer userId) {
+    return ResponseEntity.ok(habitUseCase.findByUserId(userId));
+  }
+
+  @GetMapping("/{id}")
+  @Operation(
+      description = "Get habit by id",
+      summary = "Get habit by id")
+  public ResponseEntity<Habit> findById(@PathVariable Integer id) {
+    return ResponseEntity.ok(habitUseCase.findById(id));
+  }
+
+  @GetMapping("/{id}/record")
+  @Operation(
+      description = "Get habit record by id",
+      summary = "Get habit record by id")
+  public ResponseEntity<HabitRecord> findByIdRecord(@PathVariable Integer id) {
+    return ResponseEntity.ok(habitUseCase.findByIdRecord(id));
+  }
+
+  @Operation(
+      description = "Create new habit",
+      summary = "Create new habit")
+  @PostMapping
+  public ResponseEntity<Habit> create(@Valid @RequestBody Habit habit, @RequestParam Integer userId) {
+    habit.setUserId(userId);
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body(habitUseCase.create(habit));
+  }
+
+
+  @PutMapping("/{id}")
+  @Operation(
+      description = "Update habit",
+      summary = "Update habit")
+  public ResponseEntity<Habit> update(@PathVariable Integer id, @Valid @RequestBody Habit habit) {
+    return ResponseEntity.ok(habitUseCase.update(id, habit));
+  }
+
+  @DeleteMapping("/{id}")
+  @Operation(
+      description = "Delete habit",
+      summary = "Delete habit")
+  public ResponseEntity<Void> delete(@PathVariable Integer id) {
+    habitUseCase.delete(id);
+    return ResponseEntity.noContent().build();
+  }
+}

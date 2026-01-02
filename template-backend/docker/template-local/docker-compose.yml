@@ -1,0 +1,47 @@
+services:
+  db:
+    image: postgres:15
+    container_name: template-local-db
+
+    # El contenedor se reinicia automáticamente
+    # excepto si se detiene manualmente
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: tfg_db
+
+      # Zona horaria del contenedor
+      TZ: Europe/Madrid
+
+    # Mapeo de puertos
+    # 5433 -> puerto del host
+    # 5432 -> puerto interno de PostgreSQL
+    ports:
+      - "5433:5432"
+
+    # Volumen para persistir los datos de la BD
+    # Los datos no se pierden al borrar el contenedor
+    volumes:
+      - template_db_data:/var/lib/postgresql/data
+
+    # Comprobación de estado del servicio
+    healthcheck:
+      # Comprueba si PostgreSQL acepta conexiones
+      test: ["CMD-SHELL", "pg_isready -U admin -d tfg_db"]
+
+      # Intervalo entre comprobaciones
+      interval: 10s
+
+      # Tiempo máximo de espera por comprobación
+      timeout: 5s
+
+      # Número de intentos antes de marcar como no saludable
+      retries: 5
+
+
+# Declaración del volumen Docker
+volumes:
+  # Volumen persistente para los datos de PostgreSQL
+  template_db_data:
