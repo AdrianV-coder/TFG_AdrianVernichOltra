@@ -26,6 +26,8 @@ export function NavbarDefault() {
    
       localStorage.setItem("data-theme", "light");
     }
+
+    window.dispatchEvent(new Event("habitlife:themechange"));
   }, [isDarkMode]);
 
   const handleLogout = () => {

@@ -50,16 +50,6 @@ export const getUserByUsername = async (username: string): Promise<User> => {
   }
 };
 
-/**
- * (Opcional / futuro) Login real cuando lo tengas en backend:
- * POST /auth/login {username, password} -> {token, user}
- */
-// export const login = async (payload: { username: string; password: string }) => {
-//   // De momento no existe en tu backend: lo dejamos preparado.
-//   // return await unwrap(api.post("/auth/login", payload));
-//   throw new Error("Endpoint /auth/login no implementado en backend todavía");
-// };
-
 // --------------------
 // Habits
 // --------------------

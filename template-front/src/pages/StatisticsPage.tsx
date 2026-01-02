@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { Header } from "../components/Header";
-import Highcharts from "highcharts";
-import "highcharts/modules/accessibility";
-import HighchartsReact from "highcharts-react-official";
+import Highcharts from 'highcharts';
+import HighchartsAccessibility from 'highcharts/modules/accessibility';
+import HighchartsReact from 'highcharts-react-official';
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "../store";
@@ -16,24 +16,29 @@ function toIsoDate(d: Date) {
   const yyyy = d.getFullYear();
   const mm = String(d.getMonth() + 1).padStart(2, "0");
   const dd = String(d.getDate()).padStart(2, "0");
+
   return `${yyyy}-${mm}-${dd}`;
 }
 
 function addDays(date: Date, days: number) {
   const copy = new Date(date);
   copy.setDate(copy.getDate() + days);
+
   return copy;
 }
 
 function countUniqueCompletedDays(logs: HabitLog[]) {
   const map = new Map<string, boolean>();
+
   for (const l of logs) {
     const prev = map.get(l.date);
     if (prev === true) continue;
     map.set(l.date, l.completed);
   }
+
   let count = 0;
   for (const completed of map.values()) if (completed) count++;
+
   return count;
 }
 
@@ -47,22 +52,21 @@ function StatisticsPage() {
   const [habits, setHabits] = useState<Habit[]>([]);
   const [counts, setCounts] = useState<Record<number, number>>({});
 
-  // ✅ Detectar dark mode leyendo data-theme del <html>
   const [isDark, setIsDark] = useState(
     document.documentElement.getAttribute("data-theme") === "dark"
   );
 
+  if (typeof HighchartsAccessibility === 'function') {
+    HighchartsAccessibility(Highcharts);
+  }
+
   useEffect(() => {
-    const sync = () => setIsDark(document.documentElement.getAttribute("data-theme") === "dark");
+    const syncTheme = () => setIsDark(localStorage.getItem("data-theme") === "dark");
+    syncTheme();
 
-    // Primera sync
-    sync();
-
-    // Observa cambios en data-theme
-    const observer = new MutationObserver(sync);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-
-    return () => observer.disconnect();
+    window.addEventListener("habitlife:themechange", syncTheme);
+    
+    return () => window.removeEventListener("habitlife:themechange", syncTheme);
   }, []);
 
   // Últimos 7 días
