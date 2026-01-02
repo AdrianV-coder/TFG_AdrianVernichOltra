@@ -1,5 +1,5 @@
 # HabitLife 🧠📈  
-**Track your habits. Build consistency. Improve your life.**
+**Monitorea tus hábitos. Desarrolla la constancia. Mejora tu vida.**
 
 HabitLife es una aplicación para **crear, organizar y realizar seguimiento de hábitos** diarios y semanales, con **estadísticas y gráficas de progreso** para motivarte y mantener la constancia.
 
