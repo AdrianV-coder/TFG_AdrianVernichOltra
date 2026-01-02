@@ -50,8 +50,3 @@ El sistema se apoya en una **API REST** segura y una **base de datos relacional*
 - **PostgreSQL en Docker**
 
 ---
-
-## 📦 Estructura del repositorio (propuesta)
-
-> Adapta los nombres si tu repo ya está organizado de otra forma.
-
