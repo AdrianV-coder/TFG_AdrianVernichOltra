@@ -1,0 +1,12 @@
+{
+  "title": "Create habit",
+  "subtitle": "Define a habit and start tracking it day by day.",
+  "save": "Save habit",
+  "errorCreate": "Couldn't create the habit.",
+  "fields": {
+    "nameLabel": "Name",
+    "namePlaceholder": "Ex: Drink 2L of water",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Ex: Drink water during the day to improve energy and health"
+  }
+}

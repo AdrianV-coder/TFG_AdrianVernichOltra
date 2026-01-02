@@ -1,0 +1,14 @@
+{
+  "title": "Statistics",
+  "panelTitle": "Weekly progress",
+  "panelSubtitle": "Completed habits in the last 7 days",
+  "loadingStats": "Loading statistics...",
+  "errorLoadingStats": "Error loading statistics",
+  "noHabits": "You have no habits yet.",
+  "chartTitle": "Habit completions",
+  "chartSubtitle": "From {{start}} to {{end}}",
+  "yTitle": "Days completed",
+  "seriesName": "Completed",
+  "tooltipSuffix": "days",
+  "chartDescription": "Chart showing how many days each habit was completed in the selected range."
+}

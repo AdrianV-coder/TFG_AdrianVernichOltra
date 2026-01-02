@@ -1,0 +1,22 @@
+{
+  "title": "My habits",
+  "subtitle": "Mark your progress for today ({{date}})",
+  "empty": "You don't have any habits yet. Create one from “Create habit”.",
+  "actions": {
+    "done": "Done",
+    "notDone": "Not done",
+    "edit": "Edit habit",
+    "delete": "Delete habit"
+  },
+  "status": {
+    "done": "Today's status: completed",
+    "notDone": "Today's status: not completed",
+    "unset": "Today's status: not set"
+  },
+  "errors": {
+    "noAuthUser": "No authenticated user.",
+    "loadingHabits": "Error loading habits.",
+    "updatingToday": "Couldn't update today's log.",
+    "deletingHabit": "Couldn't delete the habit."
+  }
+}

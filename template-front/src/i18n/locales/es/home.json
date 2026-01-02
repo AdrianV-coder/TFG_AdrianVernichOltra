@@ -1,0 +1,22 @@
+{
+  "title": "Mis hábitos",
+  "subtitle": "Marca tu progreso de hoy ({{date}})",
+  "empty": "No tienes hábitos todavía. Crea uno desde “Crear hábito”.",
+  "actions": {
+    "done": "Hecho",
+    "notDone": "No",
+    "edit": "Editar hábito",
+    "delete": "Eliminar hábito"
+  },
+  "status": {
+    "done": "Estado hoy: completado",
+    "notDone": "Estado hoy: no completado",
+    "unset": "Estado hoy: sin registrar"
+  },
+  "errors": {
+    "noAuthUser": "No hay usuario autenticado.",
+    "loadingHabits": "Error cargando hábitos.",
+    "updatingToday": "No se pudo actualizar el registro de hoy.",
+    "deletingHabit": "No se pudo eliminar el hábito."
+  }
+}
