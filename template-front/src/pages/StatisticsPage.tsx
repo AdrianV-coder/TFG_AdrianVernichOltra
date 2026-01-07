@@ -160,6 +160,7 @@ function StatisticsPage() {
       plotOptions: {
         column: {
           borderWidth: 0,
+          colorByPoint: true,
         },
       },
       series: [
